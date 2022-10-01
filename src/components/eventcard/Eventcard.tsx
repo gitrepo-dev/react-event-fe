@@ -26,22 +26,24 @@ export default function Eventcard() {
 
         <ul className="pt-5">
 
-          {isLoading ? (<div data-testid="loader-wapper" className='loader-wapper'><div className="lds-facebook"><div></div><div></div><div></div></div></div>) : ( 
+          {isLoading ? (<div data-testid="loader-wapper" className='loader-wapper'><div className="lds-facebook"><div></div><div></div><div></div></div></div>) : (
             <>
-            {data?.length > 0 ? (
-              <li className="mb-5 grid grid-cols-5 gap-5 cursor-pointer hover:bg-white hover:rounded-md hover:pr-2">
-              <span className="bg-white p-3 rounded-md">
-                <img src={Banner} alt="event-img" className="w-20 h-auto" />
-              </span>
-              <span className="col-span-3">
-                <span className="font-bold text-blud-600 block">18 Auguest 6:00PM</span>
-                <span className="font-bold text-gray-700 block text-sm"><span className="font-normal">to</span> 19 Auguest 6:00PM</span>
-              </span>
-              <span className="flex items-center justify-end">
-                <span className="font-bold text-gray-500 font-xl">{'>'}</span>
-              </span>
-            </li>
-            ): "There is no events."}
+              {data?.length > 0 ? (
+                data?.map((data: any) => (
+                  <li className="mb-5 grid grid-cols-5 gap-5 cursor-pointer hover:bg-white hover:rounded-md hover:pr-2" key={data.uuid}>
+                    <span className="bg-white p-3 rounded-md">
+                      <img src={Banner} alt="event-img" className="w-20 h-auto" />
+                    </span>
+                    <span className="col-span-3">
+                      <span className="font-bold text-blud-600 block">{data.start_date}</span>
+                      <span className="font-bold text-gray-700 block text-sm"><span className="font-normal">to</span> {data.end_date}</span>
+                    </span>
+                    <span className="flex items-center justify-end">
+                      <span className="font-bold text-gray-500 font-xl">{'>'}</span>
+                    </span>
+                  </li>
+                ))
+              ) : "There is no events."}
             </>
           )}
         </ul>
